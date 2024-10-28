@@ -26,7 +26,7 @@ add_executable(cypherbreak decrypt.c
         utils/interface.c
         utils/interface.h)
 
-add_executable(prng_test tests/prng_test.c
+add_executable(prng_test tests/prng_tests.c
         utils/prng.c
         utils/prng.h
 )
