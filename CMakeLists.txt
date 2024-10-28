@@ -26,9 +26,18 @@ add_executable(cypherbreak decrypt.c
         utils/interface.c
         utils/interface.h)
 
-add_executable(prng_test tests/prng_tests.c
+add_executable(prng_test_1 tests/prng_test1.c
         utils/prng.c
-        utils/prng.h
-)
+        utils/prng.h)
 
-add_test(NAME prng_test COMMAND $<TARGET_FILE:prng_test>)
+add_executable(prng_test_2 tests/prng_test2.c
+        utils/prng.c
+        utils/prng.h)
+
+add_executable(prng_test_3 tests/prng_test3.c
+        utils/prng.c
+        utils/prng.h)
+
+add_test(NAME prng_test_1 COMMAND $<TARGET_FILE:prng_test_1>)
+add_test(NAME prng_test_2 COMMAND $<TARGET_FILE:prng_test_2>)
+add_test(NAME prng_test_3 COMMAND $<TARGET_FILE:prng_test_3>)
