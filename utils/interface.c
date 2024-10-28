@@ -13,7 +13,11 @@ ACTION chooseAction() {
   printf("1. Encrypt    \n");
   printf("2. Decrypt    \n");
   printf("Your choice: ");
-  scanf("%d", &action);
+  int res = scanf("%d", &action);
+  if (res != 1) {
+    printf("Invalid input\n");
+    exit(EXIT_FAILURE);
+  }
   return (ACTION)(action-1);
 }
 
@@ -26,7 +30,11 @@ ENCRYPTION chooseEncryption() {
   printf("2. lcg_prng \n");
   printf("3. sub_prng \n");
   printf("Your choice:");
-  scanf("%d", &encryption);
+  int res = scanf("%d", &encryption);
+  if (res != 1) {
+    printf("Invalid input\n");
+    exit(EXIT_FAILURE);
+  }
   return (ENCRYPTION)(encryption-1);
 }
 
@@ -36,7 +44,11 @@ char *getInputString() {
 
   printf("Input : ");
 
-  scanf("\n\n%499[^\n]", string);
+  int res = scanf("\n\n%499[^\n]", string);
+  if (res != 1) {
+    printf("Invalid input\n");
+    exit(EXIT_FAILURE);
+  }
   return string;
 }
 
@@ -45,7 +57,12 @@ char *getInputKey() {
   printf("\033[2J\033[H");
 
   printf("Input the key: ");
-  scanf("%55s", key);
+  int res = scanf("%55s", key);
+  if (res != 1) {
+    printf("Invalid input\n");
+    exit(EXIT_FAILURE);
+  }
+
   return key;
 }
 

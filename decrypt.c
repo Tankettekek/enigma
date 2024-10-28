@@ -4,7 +4,11 @@ int main(void){
   printf("This program will only attempt to decrypt cyphers with using a 1 byte key\n");
   printf("Please input the cypher you want to decrypt: ");
   char *cypher = (char *)malloc(500);
-  scanf("\n\n%499[^\n]", cypher);
+  int result = scanf("%499[^\n]", cypher);
+  if (result != 1) {
+    exit(EXIT_FAILURE);
+  }
+
 
   int decoded = b64_decoded_size(cypher);
   unsigned char *cypher_decoded = (unsigned char *)malloc(decoded);\
