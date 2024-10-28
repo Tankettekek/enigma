@@ -1,7 +1,28 @@
 #include "utils/includes.h"
 
+int likelihood(char *string) {
+  int countSpecial = 0;
+  int countNormal = 0;
+
+  int i = 0;
+  while (string[i] != '\0') {
+    if ( (string[i] > 64 && string[i] < 91) || (string[i] > 96 && string[i] < 123) || string[i] == 32) {
+      countNormal++;
+    } else {
+      countSpecial++;
+    }
+    i++;
+  }
+
+  if (countSpecial > countNormal) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
 int main(void){
-  printf("This program will only attempt to decrypt cyphers with using a 1 byte key\n");
+  printf("This program will only be able to decrypt cyphers with using a 1 byte key\n");
   printf("Please input the cypher you want to decrypt: ");
   char *cypher = (char *)malloc(500);
   int result = scanf("%499[^\n]", cypher);
@@ -25,7 +46,7 @@ int main(void){
       }
     }
     if (flag == 0){
-      printf("Key %d: %s\n", i, decrypted);
+      printf("Key %d: %s%s\033[0m\n", i, likelihood(decrypted)? "\033[0;32m": "\033[0;31m", decrypted);
     }
     free(decrypted);
   }

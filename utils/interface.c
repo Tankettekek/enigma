@@ -10,14 +10,16 @@ ACTION chooseAction() {
   printf("\033[2J\033[H");
 
   printf("Choose action:\n");
-  printf("1. Encrypt    \n");
-  printf("2. Decrypt    \n");
-  printf("Your choice: ");
+  printf("1. \033[32mEncrypt \033[0m   \n");
+  printf("2. \033[32mDecrypt \033[0m  \n");
+  printf("Your choice: \033[32m");
   int res = scanf("%d", &action);
+  printf("\033[0m");
   if (res != 1) {
-    printf("Invalid input\n");
+    printf("\033[31mInvalid input\033[0m\n");
     exit(EXIT_FAILURE);
   }
+
   return (ACTION)(action-1);
 }
 
@@ -26,12 +28,13 @@ ENCRYPTION chooseEncryption() {
 
   printf("\033[2J\033[H");
   printf("Choose action:\n");
-  printf("1. Libc rand\n");
-  printf("2. lcg_prng \n");
-  printf("3. sub_prng \n");
-  printf("Your choice:");
+  printf("1. \033[32mLibc rand\033[0m\n");
+  printf("2. \033[32mlcg_prng \033[0m\n");
+  printf("3. \033[32msub_prng \033[0m\n");
+  printf("Your choice:\033[32m ");
   int res = scanf("%d", &encryption);
-  if (res != 1) {
+  printf("\033[0m");
+ if (res != 1) {
     printf("Invalid input\n");
     exit(EXIT_FAILURE);
   }
@@ -42,9 +45,11 @@ char *getInputString() {
   char *string = (char *)malloc(500);
   printf("\033[2J\033[H");
 
-  printf("Input : ");
+  printf("Input : \033[32m");
 
   int res = scanf("\n\n%499[^\n]", string);
+  printf("\033[0m");
+
   if (res != 1) {
     printf("Invalid input\n");
     exit(EXIT_FAILURE);
@@ -56,8 +61,10 @@ char *getInputKey() {
   char *key = (char *)malloc(57);
   printf("\033[2J\033[H");
 
-  printf("Input the key: ");
+  printf("Input the key: \033[32m");
   int res = scanf("%55s", key);
+  printf("\033[0m");
+
   if (res != 1) {
     printf("Invalid input\n");
     exit(EXIT_FAILURE);
