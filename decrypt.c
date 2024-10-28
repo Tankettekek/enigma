@@ -14,7 +14,7 @@ int likelihood(char *string) {
     i++;
   }
 
-  if (countSpecial > countNormal) {
+  if (countSpecial * 4 > countNormal) {
     return 0;
   } else {
     return 1;
