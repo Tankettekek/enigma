@@ -1,4 +1,6 @@
 #!/bin/sh
 
+apt-get update --quiet
+apt-get --assume-yes install cmake gcc make
 cmake .
 cmake --build .
