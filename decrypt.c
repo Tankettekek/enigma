@@ -51,5 +51,6 @@ int main(void){
     free(decrypted);
   }
   free(cypher);
+  free(cypher_decoded);
   return 0;
 }

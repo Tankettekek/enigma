@@ -9,7 +9,7 @@ void encryptLibcRand(const char *string, const char *seed, size_t stringSize) {
   char key = (char)rand();
 
   unsigned char *copy;
-  copy = (unsigned char *)malloc(stringSize);
+  copy = (unsigned char *)malloc(stringSize + 1);
   strcpy((char *)copy, string);
 
   for (int i = 0; i < (int)strlen((const char *)copy); i++) {
@@ -79,16 +79,18 @@ void decryptLcgPrng(const char *string, const char *seed, size_t stringSize) {
 }
 
 void encryptSubPrng(const char *string, const char *seed, size_t stringSize) {
-  unsigned char *key;
+  unsigned char *key, *nKey;
   key = sub_prng(seed);
 
   unsigned char *copy;
-  copy = (unsigned char *)malloc(stringSize);
+  copy = (unsigned char *)malloc(stringSize+1);
   strcpy((char *)copy, string);
 
   for (int i = 0; i < (int)strlen((const char *)copy); i++) {
     copy[i] = copy[i] ^ key[54];
-    key = sub_prng((const char *)key);
+    nKey = sub_prng((const char *)key);
+    free(key);
+    key = nKey;
   }
 
   char *b64out;
@@ -101,7 +103,7 @@ void encryptSubPrng(const char *string, const char *seed, size_t stringSize) {
 }
 
 void decryptSubPrng(const char *string, const char *seed, size_t stringSize) {
-  unsigned char *key;
+  unsigned char *key, *nKey;
   key = sub_prng(seed);
 
   unsigned char *b64out;
@@ -111,7 +113,9 @@ void decryptSubPrng(const char *string, const char *seed, size_t stringSize) {
 
   for (int i = 0; i < (int)strlen((const char *)b64out); i++) {
     b64out[i] = b64out[i] ^ key[54];
-    key = sub_prng((const char *)key);
+    nKey = sub_prng((const char *)key);
+    free(key);
+    key = nKey;
   }
 
   printf("%s\n", (const char *)b64out);
